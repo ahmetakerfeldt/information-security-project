@@ -42,7 +42,8 @@ export class ControlEmailComponent implements OnInit {
 
   controlEmail() {
     const options = {method: 'GET'}
-    fetch(`https://emailvalidation.abstractapi.com/v1?email=${this.checkedEmail.value}&api_key=fb1881338cae45d589f060f682a3e21a&auto_correct=true`, options)
+    const {MAIL_CHECKER_API_KEY} = environment
+    fetch(`https://emailvalidation.abstractapi.com/v1?email=${this.checkedEmail.value}&api_key=${MAIL_CHECKER_API_KEY}&auto_correct=true`, options)
       .then(response => response.json())
       .then(response => this.emailInformation=response)
       .catch(err => this.emailInformation=err)
