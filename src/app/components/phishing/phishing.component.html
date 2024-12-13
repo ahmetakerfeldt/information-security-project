@@ -1,0 +1,19 @@
+<div style="display: flex; justify-content: center; align-items: center; height: 100%">
+  <div class="content">
+    <h2>Instagram Phishing Simulation Mailer</h2>
+    <form [formGroup]="form">
+      <input style="margin-top: 20px" formControlName="email" placeholder="Enter the email">
+      <input style="margin-top: 20px" formControlName="userName" placeholder="enter the Instagram username">
+    </form>
+    <div style="margin-top: 30px">
+      <button [disabled]="form.invalid" (click)="sendEmail()">Send Email</button>
+    </div>
+    <div *ngIf="isSent" style="margin-top: 20px; color: green">
+      The e-mail was sent to <span style="color: red">{{enteredEmail}}</span> address with the username <span style="color: red">{{enteredUsername}}</span>.
+    </div>
+  </div>
+  <div style="margin-left: 50px">
+    <h2>Phished Users:</h2>
+    <pre>{{phishedUsers|json}}</pre>
+  </div>
+</div>

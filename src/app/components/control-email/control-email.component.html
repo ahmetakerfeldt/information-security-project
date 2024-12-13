@@ -1,0 +1,73 @@
+<div style="display: flex; justify-content: center; align-items: center; padding: 0 200px">
+  <div style="margin-top: 150px">
+    <h3>You are phished!</h3>
+    <p>
+      You were hooked! However, the information you entered was saved in Google Firebase for the Information Security
+      course for testing purposes only. You can <span style="font-weight: 600">delete</span> the information you have entered at any time.
+    </p>
+    <div style="margin-top: 20px">
+      <button (click)="deleteUser()">Delete Information</button>
+    </div>
+    <div>
+      <p>One of the easiest ways to prevent email phishing is to have users read the details of the person or company
+        sending the email. So let's check the sender of the email you received and then let's make a phishing scam
+        together.
+      </p>
+      <div style="display: flex; align-items: center; gap: 20px">
+        <input [formControl]="checkedEmail" placeholder="Check email">
+        <button [disabled]="checkedEmail.invalid" style="width: 200px; padding: 24px 0" (click)="controlEmail()">Control
+          Email
+        </button>
+      </div>
+      <div *ngIf="emailInformation">
+        Email Information:
+        <div style="margin-top: 20px">
+          <pre>{{ emailInformation|json }}</pre>
+        </div>
+        <div style="margin-top: 50px">
+          <span style="font-weight: 600; font-size: 20px">Email Phishing Analysis</span>
+          <div>Key Assessments</div>
+          <ul>
+            <li>
+              <span style="font-weight: 500">is_disposable_email:</span>
+              Indicates the email is not disposable. Disposable emails are often used in phishing attacks. A value of
+              "false" suggests the email might be more reliable.
+            </li>
+            <li>
+              <span style="font-weight: 500">is_free_email:</span>
+              Shows the email is from a free provider (e.g., Gmail, Yahoo). Free email services are frequently used in
+              phishing but are not a definitive indicator of a threat.
+            </li>
+            <li>
+              <span style="font-weight: 500">is_role_email:</span>
+              Indicates the email is not role-based. Role-based emails are commonly used in official communications but
+              can also be utilized in phishing.
+            </li>
+            <li>
+              <span style="font-weight: 500">is_catchall_email:</span>
+              Indicates the email is not a catch-all email (accepting all emails on the domain). This increases the
+              likelihood of it being a real user’s email.
+            </li>
+            <li>
+              <span style="font-weight: 500">is_mx_found and is_smtp_valid:</span>
+              Shows that the domain's MX record is found and the SMTP server is valid. This means the email technically
+              exists and can receive messages. However, phishing emails can also meet these criteria.
+            </li>
+            <li>
+              <span style="font-weight: 500">quality_score:</span>
+              A high-quality score indicates better email reliability. Low scores are typical in phishing emails, but a
+              high score does not eliminate the risk entirely.
+            </li>
+          </ul>
+        </div>
+        <div style="margin-top: 30px">
+          <button routerLink="/phishing">Test to Phishing Attack</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="margin-left: 50px; align-self: baseline; margin-top: 100px">
+    <h2>Phished Users:</h2>
+    <pre>{{ phishedUsers|json }}</pre>
+  </div>
+</div>
