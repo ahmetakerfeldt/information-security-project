@@ -21,12 +21,14 @@ declare const emailjs: any;
 export class PhishingComponent implements OnInit {
   form = new FormGroup({
     email: new FormControl(null, [Validators.required, Validators.email]),
-    userName: new FormControl(null, Validators.required)
+    userName: new FormControl(null, Validators.required),
+    link: new FormControl(null, Validators.required),
   })
   isSent = false
 
   get email() {return this.form.get('email') as FormControl}
   get userName() {return this.form.get('userName') as FormControl}
+  get link() {return this.form.get('link') as FormControl}
 
   enteredEmail?: string
   enteredUsername?: string
@@ -48,7 +50,7 @@ export class PhishingComponent implements OnInit {
   sendEmail() {
     if (this.form.invalid) return
 
-    const params = {to_name: this.userName.value, email: this.email.value,}
+    const params = {to_name: this.userName.value, email: this.email.value, link: this.link.value}
     const {EMAIL_SERVICE_ID, EMAIL_TEMPLATE_ID} = environment
 
     emailjs.send(EMAIL_SERVICE_ID, EMAIL_TEMPLATE_ID, params)

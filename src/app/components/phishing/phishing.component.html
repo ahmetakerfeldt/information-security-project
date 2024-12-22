@@ -4,6 +4,7 @@
     <form [formGroup]="form">
       <input style="margin-top: 20px" formControlName="email" placeholder="Enter the email">
       <input style="margin-top: 20px" formControlName="userName" placeholder="enter the Instagram username">
+      <input style="margin-top: 20px" formControlName="link" placeholder="Link">
     </form>
     <div style="margin-top: 30px">
       <button [disabled]="form.invalid" (click)="sendEmail()">Send Email</button>
